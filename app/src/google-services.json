@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "350173588457",
+    "firebase_url": "https://productlkw-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "productlkw",
+    "storage_bucket": "productlkw.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:350173588457:android:fe706c78eed7228e053978",
+        "android_client_info": {
+          "package_name": "com.example.midterm"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDjj5AFL-VE5CKEnJRPBW6_IQLhCITXZig"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:350173588457:android:99fa28f490679f66053978",
+        "android_client_info": {
+          "package_name": "com.example.productapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDjj5AFL-VE5CKEnJRPBW6_IQLhCITXZig"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
