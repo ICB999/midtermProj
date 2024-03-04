@@ -4,57 +4,60 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegisterActivity"
-    android:orientation="vertical"
     android:gravity="center"
-    android:padding="20dp">
+    android:orientation="vertical"
+    android:padding="20dp"
+    tools:context=".RegisterActivity">
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
         android:text="Login"
         android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="20dp"/>
+        android:textStyle="bold" />
+
     <com.google.android.material.textfield.TextInputLayout
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Email"
-        >
+        android:hint="Email">
+
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/emailLogin"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            />
+            android:layout_height="wrap_content" />
 
     </com.google.android.material.textfield.TextInputLayout>
+
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Password"
         app:endIconMode="password_toggle">
+
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/passwordLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            />
+            android:inputType="textPassword" />
 
     </com.google.android.material.textfield.TextInputLayout>
+
     <Button
-        android:layout_marginTop="16dp"
         android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Login"
+        android:layout_marginTop="16dp"
         android:padding="14dp"
+        android:text="Login"
         android:textSize="16sp"
-        android:textStyle="bold"
-        />
+        android:textStyle="bold" />
+
     <TextView
         android:id="@+id/signUp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Sign Up"
-        android:textAlignment="textEnd"/>
+        android:textAlignment="textEnd" />
 </LinearLayout>

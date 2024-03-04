@@ -2,14 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:id="@+id/group_main">
         <item
-            android:id="@+id/nav_home"
-            android:title="Home" />
+            android:id="@+id/uploadProduct"
+            android:title="Upload Product" />
         <item
-            android:id="@+id/nav_profile"
-            android:title="Profile" />
-        <item
-            android:id="@+id/nav_settings"
-            android:title="Settings" />
+            android:id="@+id/sign_out"
+            android:title="Sign out" />
     </group>
     <!-- Add more items as needed -->
 </menu>
