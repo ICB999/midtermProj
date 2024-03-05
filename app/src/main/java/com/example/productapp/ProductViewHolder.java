@@ -23,6 +23,6 @@ public class ProductViewHolder extends RecyclerView.ViewHolder{
         // Bind data to views
         Picasso.get().load(product.getImgURL()).into(productImageView);
         productNameTextView.setText(product.getName());
-        productPriceTextView.setText(String.valueOf(product.getPrice() + " $"));
+        productPriceTextView.setText(String.valueOf(product.getPrice()));
     }
 }
