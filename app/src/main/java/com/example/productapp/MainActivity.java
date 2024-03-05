@@ -17,6 +17,7 @@ import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -59,7 +60,8 @@ public class MainActivity extends AppCompatActivity {
         list = findViewById(R.id.list);
         productList = new ArrayList<>();
         adapter = new ProductAdapter(productList);
-        list.setLayoutManager(new LinearLayoutManager(this));
+        GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
+        list.setLayoutManager(layoutManager);
         list.setAdapter(adapter);
         firebase = FirebaseDatabase.getInstance("https://productlkw-default-rtdb.asia-southeast1.firebasedatabase.app/");
         DatabaseReference productsRef = firebase.getReference("products");
