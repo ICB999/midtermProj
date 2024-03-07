@@ -12,7 +12,6 @@
         android:textAppearance="?attr/textAppearanceHeadlineSmall"
         android:textColor="?attr/colorOnSurface"
         android:text="Menu" />
-
     <TextView
         android:id="@+id/menuEmail"
         android:layout_width="wrap_content"

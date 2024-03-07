@@ -53,6 +53,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
             android:hint="Description">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -61,7 +62,21 @@
                 android:layout_height="wrap_content" />
 
         </com.google.android.material.textfield.TextInputLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Category:"/>
+        <AutoCompleteTextView
+            android:id="@+id/categoryView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter or Select Category" />
 
+        <Spinner
+            android:id="@+id/categorySelector"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
         <ImageView
             android:id="@+id/selectedImage"
             android:layout_width="match_parent"

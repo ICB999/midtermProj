@@ -16,7 +16,6 @@
         android:textStyle="bold"
         android:layout_marginBottom="20dp"/>
     <com.google.android.material.textfield.TextInputLayout
-
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Email"
@@ -39,7 +38,6 @@
             android:layout_height="wrap_content"
             android:inputType="textPassword"
             />
-
     </com.google.android.material.textfield.TextInputLayout>
     <Button
         android:layout_marginTop="16dp"

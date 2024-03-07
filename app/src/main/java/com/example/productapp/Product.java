@@ -7,7 +7,7 @@ public class Product {
     private String name;
     private double price;
     private String userID;
-
+    private String category;
     // Constructor
     public Product() {
         // Default constructor required for Firebase
@@ -17,7 +17,8 @@ public class Product {
     public String getId() {
         return id;
     }
-
+    public String getCategory(){ return category;};
+    public void setCategory(String category){this.category = category;};
     public void setId(String id) {
         this.id = id;
     }

@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,6 +35,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+    FrameLayout fragmentContainer;
     FirebaseDatabase firebase;
     ProductAdapter adapter;
     FirebaseAuth mAuth;
@@ -45,11 +47,19 @@ public class MainActivity extends AppCompatActivity {
     private Toolbar toolbar;
     RecyclerView list;
     List<Product> productList;
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadProducts();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mAuth = FirebaseAuth.getInstance();
+        fragmentContainer = findViewById(R.id.fragmentContainer);
         user = mAuth.getCurrentUser();
         drawerLayout = findViewById(R.id.drawerLayout);
         navigationView = findViewById(R.id.navigationView);
@@ -65,8 +75,6 @@ public class MainActivity extends AppCompatActivity {
         list.setAdapter(adapter);
         firebase = FirebaseDatabase.getInstance("https://productlkw-default-rtdb.asia-southeast1.firebasedatabase.app/");
         DatabaseReference productsRef = firebase.getReference("products");
-
-
         productsRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -100,14 +108,30 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id = item.getItemId();
                 boolean closeDrawer = false;
-//                if (id == R.id.sign_out) {
-//                    mAuth.getInstance().signOut();
-//                    startActivity(new Intent(MainActivity.this, LoginActivity.class));
-//                    finish();
-//                    closeDrawer = false;
-//                }
-                if (id == R.id.uploadProduct) {
+                if (id == R.id.sign_out) {
+                    mAuth.getInstance().signOut();
+                    startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                    finish();
+                    closeDrawer = false;
+                }
+                else if (id == R.id.uploadProduct) {
                     startActivity(new Intent(MainActivity.this, UploadProduct.class));
+                    closeDrawer = true;
+                }
+                else if (id == R.id.manageProduct){
+                    list.setVisibility(View.GONE);
+                    fragmentContainer.setVisibility(View.VISIBLE);
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.fragmentContainer, new ManageProductFragment()) // Replace with your fragment class
+                            .commit();
+                    closeDrawer = true;
+                }
+                else if(id == R.id.viewProduct){
+                    fragmentContainer.setVisibility(View.GONE);
+                    list.setVisibility(View.VISIBLE);
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.fragmentContainer, new ManageProductFragment()) // Replace with your fragment class
+                            .commit();
                     closeDrawer = true;
                 }
                 if (closeDrawer) {
@@ -118,7 +142,25 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-
+    private void loadProducts() {
+        DatabaseReference productsRef = firebase.getReference("products");
+        productsRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                productList.clear();
+                for (DataSnapshot productSnapshot : snapshot.getChildren()) {
+                    Product product = productSnapshot.getValue(Product.class);
+                    productList.add(product);
+                }
+                // Notify the adapter that the data set has changed
+                adapter.notifyDataSetChanged();
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(MainActivity.this, "Failed to retrieve products", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.top_app_bar, menu);
