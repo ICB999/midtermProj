@@ -30,10 +30,11 @@
             </com.google.android.material.appbar.AppBarLayout>
         </LinearLayout>
         <!-- UI is here -->
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/categoryList"
+        <FrameLayout
+            android:id="@+id/productFragment"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="match_parent"
+            />
         <FrameLayout
         android:id="@+id/fragmentContainer"
         android:layout_width="match_parent"

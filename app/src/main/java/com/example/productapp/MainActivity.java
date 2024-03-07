@@ -35,6 +35,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+    CategoryFragment categoryFragment;
     FrameLayout fragmentContainer;
     FirebaseDatabase firebase;
     ProductAdapter adapter;
@@ -51,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        loadProducts();
+//        loadProducts();
     }
 
     @Override
@@ -75,23 +76,29 @@ public class MainActivity extends AppCompatActivity {
         list.setAdapter(adapter);
         firebase = FirebaseDatabase.getInstance("https://productlkw-default-rtdb.asia-southeast1.firebasedatabase.app/");
         DatabaseReference productsRef = firebase.getReference("products");
-        productsRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                productList.clear();
-                for (DataSnapshot productSnapshot : snapshot.getChildren()) {
-                    Product product = productSnapshot.getValue(Product.class);
-                    productList.add(product);
-                }
-                // Notify the adapter that the data set has changed
-                adapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(MainActivity.this, "Failed to retrieve products", Toast.LENGTH_SHORT).show();
-            }
-        });
+        String categoryName = "Apple";
+        categoryFragment = CategoryFragment.newInstance(categoryName);
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.productFragment,categoryFragment)
+                        .commit();
+//        DISPLAYING PRODUCTS
+//        productsRef.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                productList.clear();
+//                for (DataSnapshot productSnapshot : snapshot.getChildren()) {
+//                    Product product = productSnapshot.getValue(Product.class);
+//                    productList.add(product);
+//                }
+//                // Notify the adapter that the data set has changed
+//                adapter.notifyDataSetChanged();
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//                Toast.makeText(MainActivity.this, "Failed to retrieve products", Toast.LENGTH_SHORT).show();
+//            }
+//        });
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -142,32 +149,32 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-    private void loadProducts() {
-        DatabaseReference productsRef = firebase.getReference("products");
-        productsRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                productList.clear();
-                for (DataSnapshot productSnapshot : snapshot.getChildren()) {
-                    Product product = productSnapshot.getValue(Product.class);
-                    productList.add(product);
-                }
-                // Notify the adapter that the data set has changed
-                adapter.notifyDataSetChanged();
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(MainActivity.this, "Failed to retrieve products", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
+//    LOADING PRODUCTS
+//    private void loadProducts() {
+//        DatabaseReference productsRef = firebase.getReference("products");
+//        productsRef.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                productList.clear();
+//                for (DataSnapshot productSnapshot : snapshot.getChildren()) {
+//                    Product product = productSnapshot.getValue(Product.class);
+//                    productList.add(product);
+//                }
+//                // Notify the adapter that the data set has changed
+//                adapter.notifyDataSetChanged();
+//            }
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//                Toast.makeText(MainActivity.this, "Failed to retrieve products", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.top_app_bar, menu);
         MenuItem menuItem = menu.findItem(R.id.searchIcon);
         SearchView searchView = (SearchView) menuItem.getActionView();
         searchView.setQueryHint("Type to Search");
-
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
